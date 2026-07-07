@@ -63,8 +63,6 @@
     font-weight: 700;
     letter-spacing: 0.3px;
   }
-  .brand .mark { display: flex; }
-  .brand .mark svg { width: 36px; height: 36px; display: block; }
   .topbar-actions { display: flex; align-items: center; gap: 10px; }
   .theme-toggle, .lang-toggle {
     background: rgba(255,255,255,0.12);
@@ -88,7 +86,7 @@
     z-index: 2;
   }
   .hero-logo { margin-bottom: 22px; }
-  .hero-logo svg { width: 76px; height: 76px; }
+  .hero-logo img { width: 60px; height: auto; display: block; margin: 0 auto; }
   .eyebrow {
     text-transform: uppercase;
     letter-spacing: 2.5px;
@@ -376,14 +374,6 @@
 <header class="hero">
   <div class="topbar">
     <button class="brand" id="brandHome" aria-label="Tagasi avalehele" style="background:none; border:none; cursor:pointer; font-family:inherit; padding:0;">
-      <span class="mark">
-        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="32" cy="32" r="31" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-          <path d="M14 32a18 18 0 0136 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <path d="M20 32a12 12 0 0124 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.85"/>
-          <circle cx="32" cy="41" r="6" fill="#ff6b5b"/>
-        </svg>
-      </span>
       <span class="emblem-badge">
         <img src="assets/erau-emblem.png" alt="ERAÜ embleem" width="24" height="48">
       </span>
@@ -401,13 +391,7 @@
 
   <div class="hero-inner">
     <div class="hero-logo">
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="32" cy="32" r="30" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
-        <path d="M10 32a22 22 0 0144 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
-        <path d="M16 32a16 16 0 0132 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
-        <path d="M22 32a10 10 0 0120 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <circle cx="32" cy="44" r="7" fill="#ff6b5b"/>
-      </svg>
+      <img src="assets/erau-emblem.png" alt="ERAÜ embleem" width="42" height="84">
     </div>
     <div class="eyebrow" data-i18n="hero.eyebrow">Eesti Raadioamatööride Ühing</div>
     <h1 class="title" data-i18n="hero.title">Raadiosidevõrkude toimkond</h1>
