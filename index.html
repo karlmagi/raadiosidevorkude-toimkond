@@ -337,6 +337,36 @@
     font-size: 13.5px;
   }
   footer a { color: var(--text-muted); }
+  .footer-emblem { margin-bottom: 14px; opacity: 0.85; display: flex; justify-content: center; }
+
+  .back-to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--accent-2);
+    color: #fff;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  .back-to-top:hover { filter: brightness(1.1); }
+
+  .emblem-badge { display: flex; align-items: center; }
+  .emblem-badge img { height: 34px; width: auto; display: block; }
+  .footer-emblem img { height: 46px; width: auto; display: block; }
 
   ::selection { background: var(--accent); color: #fff; }
 </style>
@@ -345,7 +375,7 @@
 
 <header class="hero">
   <div class="topbar">
-    <div class="brand">
+    <button class="brand" id="brandHome" aria-label="Tagasi avalehele" style="background:none; border:none; cursor:pointer; font-family:inherit; padding:0;">
       <span class="mark">
         <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
           <circle cx="32" cy="32" r="31" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
@@ -354,8 +384,11 @@
           <circle cx="32" cy="41" r="6" fill="#ff6b5b"/>
         </svg>
       </span>
-      <span data-i18n="brand.title">ERAÜ · Raadiosidevõrkude toimkond</span>
-    </div>
+      <span class="emblem-badge">
+        <img src="assets/erau-emblem.png" alt="ERAÜ embleem" width="24" height="48">
+      </span>
+      <span data-i18n="brand.title" style="color:#fff;">ERAÜ · Raadiosidevõrkude toimkond</span>
+    </button>
     <div class="topbar-actions">
       <button class="lang-toggle" id="langToggle" aria-label="Vaheta keelt / Switch language">
         <span id="langLabel">EN</span>
@@ -414,7 +447,7 @@
               <div class="card">
                 <span class="icon">🛠️</span>
                 <h3 data-i18n="card.repairs.title">Repiiterite hooldus</h3>
-                <p data-i18n="card.repairs.desc">Koordineerime analoog- ja DMR-repiiterite tehnilist hooldust, sagedusload ja asukohtade koostööd üle Eesti.</p>
+                <p data-i18n="card.repairs.desc">Koordineerime analoog- ja DMR-repiiterite tehnilist hooldust, sageduslube ning koostööd asukohtade leidmisel üle Eesti.</p>
               </div>
               <div class="card">
                 <span class="icon">🌐</span>
@@ -424,7 +457,7 @@
               <div class="card">
                 <span class="icon">📻</span>
                 <h3 data-i18n="card.hf.title">HF digisüsteemid</h3>
-                <p data-i18n="card.hf.desc">Arendame lühilainel töötavaid digitaalseid sidesüsteeme kaugside ja häiringukindluse jaoks.</p>
+                <p data-i18n="card.hf.desc">Arendame lühilainel töötavaid digitaalseid sidesüsteeme kaugside ja häirekindluse jaoks.</p>
               </div>
               <div class="card">
                 <span class="icon">📶</span>
@@ -434,7 +467,7 @@
               <div class="card">
                 <span class="icon">🔐</span>
                 <h3 data-i18n="card.cyber.title">ERAÜ küberturve</h3>
-                <p data-i18n="card.cyber.desc">Tagame ühingu digitaristu, teenuste ja liikmeandmete turvalisuse ning küberhügieeni.</p>
+                <p data-i18n="card.cyber.desc">Tagame ühingu digitaristu, teenuste ja liikmeandmete turvalisuse ning järgime head küberhügieeni.</p>
               </div>
               <div class="card">
                 <span class="icon">🎓</span>
@@ -449,7 +482,7 @@
               <div class="card">
                 <span class="icon">🚨</span>
                 <h3 data-i18n="card.crisis.title">Kriisiraadioside tugi</h3>
-                <p data-i18n="card.crisis.desc">Hoiame ja arendame taristut, mis toetab kriisiolukordades toimivat varusidet ja koostööd päästestruktuuridega.</p>
+                <p data-i18n="card.crisis.desc">Hoiame ja arendame taristut, mis toetab toimivat varusidet kriisiolukordades ning koostööd päästestruktuuridega.</p>
               </div>
               <div class="card">
                 <span class="icon">🤝</span>
@@ -524,6 +557,7 @@
                   <tr><td>Narva</td><td>2 m / 70 cm</td><td data-i18n="table.analoog.row1">ES4RVN, ES4RVK — regionaalne katvus</td></tr>
                   <tr><td data-i18n="table.analoog.row2loc">Tallinn ja ümbrus</td><td>70 cm</td><td data-i18n="table.analoog.row2">Osa põhivõrgust ühendatud DMR-i taristuga</td></tr>
                   <tr><td data-i18n="table.analoog.row3loc">Lääne-Eesti</td><td>70 cm</td><td data-i18n="table.analoog.row3">Katvus Lihula ja Märjamaa suunal</td></tr>
+                  <tr><td>Tamsalu</td><td>2 m</td><td data-i18n="table.analoog.row4">ES4RVB — väga suure katvusega repiiter</td></tr>
                 </tbody>
               </table>
               <p class="table-note" data-i18n="table.analoog.note">
@@ -561,7 +595,7 @@
                 <div class="step-num">2</div>
                 <div>
                   <h4 data-i18n="step2.title">Programmeeri sagedused</h4>
-                  <p data-i18n="step2.desc">Sisesta repiiteri TX/RX sagedus, vajalik CTCSS-toon (analoog) või värvikood ja
+                  <p data-i18n="step2.desc">Sisesta repiiteri TX- ja RX-sagedused, vajalik CTCSS-toon (analoog) või värvikood ja
                   talkgroup (DMR) vastavalt repiiterite tabelile.</p>
                 </div>
               </div>
@@ -612,7 +646,7 @@
                 <span class="d-radio"></span>
                 <span class="d-icon">🔧</span>
                 <h4 data-i18n="donate.pusikulud.title">Püsikulude katmine</h4>
-                <p data-i18n="donate.pusikulud.desc">Repiiterite elekter, majutuskohtade rent, sagedusload, seadmete hooldus ja asendamine.</p>
+                <p data-i18n="donate.pusikulud.desc">Repiiterite elekter, majutuskohtade rent, sageduslube, seadmete hooldus ja asendamine.</p>
               </button>
               <button class="donate-option" id="donate-areng" data-target="areng">
                 <span class="d-radio"></span>
@@ -653,7 +687,7 @@
           <div class="accordion-body">
             <p class="section-sub" data-i18n="liitu.intro">
               Toimkonna liikmeks saab astuda iga ERAÜ liige, kes tasub oma liikmemaksu — eraldi
-              liitumistasu ega -tingimusi toimkonnal ei ole.
+              liitumistasu ega täiendavaid tingimusi toimkonnal ei ole.
             </p>
             <div class="callout" style="margin-bottom: 22px;" data-i18n="liitu.callout">
               📍 <strong>Otsime regioonide koordinaatoreid!</strong> Kui soovid oma piirkonnas
@@ -684,9 +718,14 @@
 </main>
 
 <footer>
+  <div class="footer-emblem">
+    <img src="assets/erau-emblem.png" alt="ERAÜ embleem" width="23" height="46">
+  </div>
   <p data-i18n="footer.line1">Eesti Raadioamatööride Ühing (ERAÜ) — IARU liige alates 1938. aastast.</p>
   <p data-i18n="footer.line2">Raadiosidevõrkude toimkond · <a href="https://erau.ee" target="_blank" rel="noopener">erau.ee</a> · <a href="https://dmr.ee" target="_blank" rel="noopener">dmr.ee</a></p>
 </footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Tagasi üles">↑</button>
 
 <script>
   const root = document.documentElement;
@@ -731,6 +770,19 @@
     });
   });
 
+  // Back to top / go home
+  function goHome() {
+    document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('open'));
+    document.getElementById('acc-eesmark').classList.add('open');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  document.getElementById('brandHome').addEventListener('click', goHome);
+  const backToTop = document.getElementById('backToTop');
+  backToTop.addEventListener('click', goHome);
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.scrollY > 400);
+  });
+
   // Repeater tabs
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -772,21 +824,21 @@
       'eesmark.hint': 'Meie tegevusvaldkonnad ja eesmärgid',
       'eesmark.intro': 'Eestis on aastate jooksul rajatud repiitereid ja sidevõrke vabatahtlike jõul, kuid nende hooldus, koordinatsioon ja arendus on jäänud killustatuks. Raadiosidevõrkude toimkond koondab selle töö ühise katuse alla.',
       'card.repairs.title': 'Repiiterite hooldus',
-      'card.repairs.desc': 'Koordineerime analoog- ja DMR-repiiterite tehnilist hooldust, sagedusload ja asukohtade koostööd üle Eesti.',
+      'card.repairs.desc': 'Koordineerime analoog- ja DMR-repiiterite tehnilist hooldust, sageduslube ning koostööd asukohtade leidmisel üle Eesti.',
       'card.ip.title': 'IP-võrgud ja -lingid',
       'card.ip.desc': 'Ehitame ja haldame IP-põhiseid raadiovõrke ning IP-raadiolinke repiiterite ja sõlmpunktide ühendamiseks.',
       'card.hf.title': 'HF digisüsteemid',
-      'card.hf.desc': 'Arendame lühilainel töötavaid digitaalseid sidesüsteeme kaugside ja häiringukindluse jaoks.',
+      'card.hf.desc': 'Arendame lühilainel töötavaid digitaalseid sidesüsteeme kaugside ja häirekindluse jaoks.',
       'card.lora.title': 'LoRa võrgud',
       'card.lora.desc': 'Katsetame ja laiendame LoRa-põhiseid madala energiatarbega andme- ja sidevõrke.',
       'card.cyber.title': 'ERAÜ küberturve',
-      'card.cyber.desc': 'Tagame ühingu digitaristu, teenuste ja liikmeandmete turvalisuse ning küberhügieeni.',
+      'card.cyber.desc': 'Tagame ühingu digitaristu, teenuste ja liikmeandmete turvalisuse ning järgime head küberhügieeni.',
       'card.community.title': 'Kogukonna kasvatamine',
       'card.community.desc': 'Julgustame uusi ja vanu raadioamatööre repiitereid ja võrke julgemalt kasutama — juhendid ja katsesided.',
       'card.ardc.title': 'ARDC grandid ja 44net',
       'card.ardc.desc': 'Taotleme ARDC grante taristu arenduseks ning haldame 44net (AMPRNet) liidestusi raadioamatööride IP-võrkude jaoks.',
       'card.crisis.title': 'Kriisiraadioside tugi',
-      'card.crisis.desc': 'Hoiame ja arendame taristut, mis toetab kriisiolukordades toimivat varusidet ja koostööd päästestruktuuridega.',
+      'card.crisis.desc': 'Hoiame ja arendame taristut, mis toetab toimivat varusidet kriisiolukordades ning koostööd päästestruktuuridega.',
       'card.partners.title': 'Partnerlussuhted',
       'card.partners.desc': 'Suhtleme partneritega, sealhulgas internetiteenuse pakkujatega (ISP-d), et tagada võrkudele ühendus ja tugi.',
       'repiiterid.title': 'Eesti repiiterite võrk',
@@ -805,13 +857,14 @@
       'table.analoog.row2': 'Osa põhivõrgust ühendatud DMR-i taristuga',
       'table.analoog.row3loc': 'Lääne-Eesti',
       'table.analoog.row3': 'Katvus Lihula ja Märjamaa suunal',
+      'table.analoog.row4': 'ES4RVB — väga suure katvusega repiiter',
       'table.analoog.note': 'Analoogrepiiterite täpne loend, CTCSS-toonid ja hooldusseis on koondatud <a href="https://erau.ee" target="_blank" rel="noopener">erau.ee</a> repiiterite lehele.',
       'alustamine.title': 'Kuidas repiiterit esimest korda kasutada',
       'alustamine.hint': 'Neli sammu eetrisse jõudmiseks',
       'step1.title': 'Hangi luba ja raadiojaam',
       'step1.desc': 'Vajad kehtivat raadioamatööri luba ja kutsungit ning DMR-i puhul ka isiklikku DMR ID-d (registreeri <a href="https://radioid.net" target="_blank" rel="noopener">radioid.net</a> lehel).',
       'step2.title': 'Programmeeri sagedused',
-      'step2.desc': 'Sisesta repiiteri TX/RX sagedus, vajalik CTCSS-toon (analoog) või värvikood ja talkgroup (DMR) vastavalt repiiterite tabelile.',
+      'step2.desc': 'Sisesta repiiteri TX- ja RX-sagedused, vajalik CTCSS-toon (analoog) või värvikood ja talkgroup (DMR) vastavalt repiiterite tabelile.',
       'step3.title': 'Kuula enne rääkimist',
       'step3.desc': 'Veendu, et kanal on vaba. Räägi selgelt oma kutsung ette ja anna teistele võimalus liituda või vastata.',
       'step4.title': 'Küsi julgelt abi',
@@ -821,7 +874,7 @@
       'annetused.hint': 'Sihtotstarbelised annetused — vali, kuhu su panus läheb',
       'annetused.intro': 'Toimkonna tegevus püsib suuresti vabatahtlikkusel ja annetustel. Saad ise valida, kas su annetus katab jooksvaid kulusid või läheb uute süsteemide arendusse.',
       'donate.pusikulud.title': 'Püsikulude katmine',
-      'donate.pusikulud.desc': 'Repiiterite elekter, majutuskohtade rent, sagedusload, seadmete hooldus ja asendamine.',
+      'donate.pusikulud.desc': 'Repiiterite elekter, majutuskohtade rent, sageduslube, seadmete hooldus ja asendamine.',
       'donate.areng.title': 'Arendustöö',
       'donate.areng.desc': 'Uued repiiterid, IP-raadiolingid, LoRa ja HF-digisüsteemide arendus, küberturbe parendused.',
       'donate.recipient': 'Saaja',
@@ -834,7 +887,7 @@
       },
       'liitu.title': 'Liitu toimkonnaga',
       'liitu.hint': 'Kontakt ja liitumisvõimalused',
-      'liitu.intro': 'Toimkonna liikmeks saab astuda iga ERAÜ liige, kes tasub oma liikmemaksu — eraldi liitumistasu ega -tingimusi toimkonnal ei ole.',
+      'liitu.intro': 'Toimkonna liikmeks saab astuda iga ERAÜ liige, kes tasub oma liikmemaksu — eraldi liitumistasu ega täiendavaid tingimusi toimkonnal ei ole.',
       'liitu.callout': '📍 <strong>Otsime regioonide koordinaatoreid!</strong> Kui soovid oma piirkonnas (nt Tartumaa, Ida-Virumaa, Lääne-Eesti) vedada repiiterite ja sidevõrkude teemasid, anna endast teada — see on suurepärane koht alustamiseks.',
       'liitu.joinIntro': 'Otsime vabatahtlikke, kes aitaksid repiitereid ja sidevõrke hooldada, uusi asukohti leida, digisüsteeme arendada või lihtsalt jagaksid oma teadmisi algajatele. Iga panus loeb — suur või väike.',
       'liitu.emailLine': 'Liitumiseks palun saada e-kiri aadressile <span style="white-space:nowrap;">es1krm@erau.ee</span>.',
