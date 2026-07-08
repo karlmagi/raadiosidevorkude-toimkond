@@ -1,4 +1,4 @@
-# UUDIS: ERAÜ-s alustab tööd uus Raadiosidevõrkude toimkond
+# ERAÜ-s alustab tööd uus Raadiosidevõrkude toimkond
 
 Head raadioamatöörid!
 
